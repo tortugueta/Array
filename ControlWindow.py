@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ControlWindow.ui'
 #
-# Created: Fri Sep 11 15:52:07 2015
+# Created: Tue Sep 15 15:48:00 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -185,7 +185,8 @@ class Ui_ControlWindow(object):
         QtCore.QObject.connect(self.action_quit, QtCore.SIGNAL(_fromUtf8("activated()")), ControlWindow.close)
         QtCore.QMetaObject.connectSlotsByName(ControlWindow)
         ControlWindow.setTabOrder(self.shapes_comboBox, self.filled_checkBox)
-        ControlWindow.setTabOrder(self.filled_checkBox, self.thickness_spinBox)
+        ControlWindow.setTabOrder(self.filled_checkBox, self.grouped_checkBox)
+        ControlWindow.setTabOrder(self.grouped_checkBox, self.thickness_spinBox)
         ControlWindow.setTabOrder(self.thickness_spinBox, self.scale_doubleSpinBox)
         ControlWindow.setTabOrder(self.scale_doubleSpinBox, self.rotation_doubleSpinBox)
         ControlWindow.setTabOrder(self.rotation_doubleSpinBox, self.nrows_spinBox)
@@ -195,15 +196,15 @@ class Ui_ControlWindow(object):
 
     def retranslateUi(self, ControlWindow):
         ControlWindow.setWindowTitle(_translate("ControlWindow", "Control window", None))
-        self.filled_checkBox.setText(_translate("ControlWindow", "Filled", None))
-        self.grouped_checkBox.setText(_translate("ControlWindow", "Grouped", None))
-        self.thickness_label.setText(_translate("ControlWindow", "Thickness", None))
-        self.scale_label.setText(_translate("ControlWindow", "Scale", None))
-        self.rotation_label.setText(_translate("ControlWindow", "Rotation (deg)", None))
-        self.nrows_label.setText(_translate("ControlWindow", "Number of rows", None))
-        self.ncolumns_label.setText(_translate("ControlWindow", "Number of columns", None))
-        self.rowPitch_label.setText(_translate("ControlWindow", "Row pitch", None))
-        self.columnPitch_label.setText(_translate("ControlWindow", "Column pitch", None))
+        self.filled_checkBox.setText(_translate("ControlWindow", "&Filled", None))
+        self.grouped_checkBox.setText(_translate("ControlWindow", "&Grouped", None))
+        self.thickness_label.setText(_translate("ControlWindow", "&Thickness", None))
+        self.scale_label.setText(_translate("ControlWindow", "&Scale", None))
+        self.rotation_label.setText(_translate("ControlWindow", "&Rotation (deg)", None))
+        self.nrows_label.setText(_translate("ControlWindow", "Nu&mber of rows", None))
+        self.ncolumns_label.setText(_translate("ControlWindow", "Number of colum&ns", None))
+        self.rowPitch_label.setText(_translate("ControlWindow", "Row pit&ch", None))
+        self.columnPitch_label.setText(_translate("ControlWindow", "Column pitc&h", None))
         self.menuFile.setTitle(_translate("ControlWindow", "File", None))
         self.menuColor.setTitle(_translate("ControlWindow", "Tools", None))
         self.action_quit.setText(_translate("ControlWindow", "Quit", None))

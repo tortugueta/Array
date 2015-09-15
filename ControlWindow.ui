@@ -48,7 +48,7 @@
       <item>
        <widget class="QCheckBox" name="filled_checkBox">
         <property name="text">
-         <string>Filled</string>
+         <string>&amp;Filled</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -58,7 +58,7 @@
       <item>
        <widget class="QCheckBox" name="grouped_checkBox">
         <property name="text">
-         <string>Grouped</string>
+         <string>&amp;Grouped</string>
         </property>
         <property name="checked">
          <bool>true</bool>
@@ -72,7 +72,7 @@
       <item>
        <widget class="QLabel" name="thickness_label">
         <property name="text">
-         <string>Thickness</string>
+         <string>&amp;Thickness</string>
         </property>
         <property name="buddy">
          <cstring>thickness_spinBox</cstring>
@@ -96,7 +96,7 @@
       <item>
        <widget class="QLabel" name="scale_label">
         <property name="text">
-         <string>Scale</string>
+         <string>&amp;Scale</string>
         </property>
         <property name="buddy">
          <cstring>scale_doubleSpinBox</cstring>
@@ -126,7 +126,7 @@
       <item>
        <widget class="QLabel" name="rotation_label">
         <property name="text">
-         <string>Rotation (deg)</string>
+         <string>&amp;Rotation (deg)</string>
         </property>
         <property name="buddy">
          <cstring>rotation_doubleSpinBox</cstring>
@@ -158,7 +158,7 @@
            <bool>true</bool>
           </property>
           <property name="text">
-           <string>Number of rows</string>
+           <string>Nu&amp;mber of rows</string>
           </property>
           <property name="buddy">
            <cstring>nrows_spinBox</cstring>
@@ -191,7 +191,7 @@
            <bool>true</bool>
           </property>
           <property name="text">
-           <string>Number of columns</string>
+           <string>Number of colum&amp;ns</string>
           </property>
           <property name="buddy">
            <cstring>ncolumns_spinBox</cstring>
@@ -221,7 +221,7 @@
            <bool>true</bool>
           </property>
           <property name="text">
-           <string>Row pitch</string>
+           <string>Row pit&amp;ch</string>
           </property>
           <property name="buddy">
            <cstring>rowPitch_doubleSpinBox</cstring>
@@ -254,7 +254,7 @@
            <bool>true</bool>
           </property>
           <property name="text">
-           <string>Column pitch</string>
+           <string>Column pitc&amp;h</string>
           </property>
           <property name="buddy">
            <cstring>columnPitch_doubleSpinBox</cstring>
@@ -349,6 +349,7 @@
  <tabstops>
   <tabstop>shapes_comboBox</tabstop>
   <tabstop>filled_checkBox</tabstop>
+  <tabstop>grouped_checkBox</tabstop>
   <tabstop>thickness_spinBox</tabstop>
   <tabstop>scale_doubleSpinBox</tabstop>
   <tabstop>rotation_doubleSpinBox</tabstop>
