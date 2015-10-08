@@ -36,6 +36,7 @@ class MainControlWindow(QMainWindow, ControlWindow.Ui_ControlWindow):
 		#self.connect(self.action_reset, SIGNAL("activated()"), self.sceneWindow.createScene)
 		self.connect(self.action_invert, SIGNAL("toggled(bool)"), self.sceneWindow.setColours)
 		self.connect(self.shapes_comboBox, SIGNAL("currentIndexChanged(int)"), self.sceneWindow.createScene)
+		self.connect(self.aspectRatio_doubleSpinBox, SIGNAL("valueChanged(double)"), self.sceneWindow.setAspectRatio)
 		self.connect(self.thickness_spinBox, SIGNAL("valueChanged(int)"), self.sceneWindow.setColours)
 		self.connect(self.scale_doubleSpinBox, SIGNAL("valueChanged(double)"), self.sceneWindow.setScale)
 		self.connect(self.rotation_doubleSpinBox, SIGNAL("valueChanged(double)"), self.sceneWindow.setRotation)
@@ -77,6 +78,7 @@ class MainSceneWindow(QMainWindow, SceneWindow.Ui_SceneWindow):
 		nrows = self.parent().nrows_spinBox.value()
 		ncolumns = self.parent().ncolumns_spinBox.value()
 		self.radius = 50 # This is the radius for the circles and half the size for the rectangles
+		aspectRatio = self.parent().aspectRatio_doubleSpinBox.value()
 
 		# Create the group that will contain the items
 		self.group = QGraphicsItemGroup()
@@ -88,9 +90,9 @@ class MainSceneWindow(QMainWindow, SceneWindow.Ui_SceneWindow):
 		for row in xrange(nrows):
 			for column in xrange(ncolumns):
 				if selectedShape == 0:		# Circles selected
-					item = QGraphicsEllipseItem(-self.radius, -self.radius, 2*self.radius,  2*self.radius)
+					item = QGraphicsEllipseItem(-self.radius*aspectRatio, -self.radius, 2*self.radius*aspectRatio,  2*self.radius)
 				elif selectedShape == 1:	# Rectangles selected
-					item = QGraphicsRectItem(-self.radius,  -self.radius,  2*self.radius, 2*self.radius)
+					item = QGraphicsRectItem(-self.radius*aspectRatio,  -self.radius,  2*self.radius*aspectRatio, 2*self.radius)
 				
 				item.setFlags(QGraphicsItem.GraphicsItemFlags(1)) # Make item movable
 				self.itemList.append(item)
@@ -201,6 +203,15 @@ class MainSceneWindow(QMainWindow, SceneWindow.Ui_SceneWindow):
 		for row in xrange(nrows):
 			for column in xrange(ncolumns):
 				self.itemList[row*ncolumns + column].setPos(-xoffset + column * column_period, -yoffset + row * row_period)
+
+	def setAspectRatio(self):
+		"""
+		Set the aspect ratio of the features
+		"""
+		
+		aspectRatio = self.parent().aspectRatio_doubleSpinBox.value()
+		for item in self.itemList:
+			item.setRect(-self.radius*aspectRatio, -self.radius, 2*self.radius*aspectRatio,  2*self.radius)
 
 		
 def main():

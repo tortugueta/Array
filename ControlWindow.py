@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'ControlWindow.ui'
 #
-# Created: Tue Sep 15 15:48:00 2015
+# Created: Thu Oct  8 11:52:39 2015
 #      by: PyQt4 UI code generator 4.10.4
 #
 # WARNING! All changes made in this file will be lost!
@@ -26,14 +26,14 @@ except AttributeError:
 class Ui_ControlWindow(object):
     def setupUi(self, ControlWindow):
         ControlWindow.setObjectName(_fromUtf8("ControlWindow"))
-        ControlWindow.resize(285, 428)
+        ControlWindow.resize(285, 486)
         sizePolicy = QtGui.QSizePolicy(QtGui.QSizePolicy.Preferred, QtGui.QSizePolicy.Preferred)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(ControlWindow.sizePolicy().hasHeightForWidth())
         ControlWindow.setSizePolicy(sizePolicy)
-        ControlWindow.setMinimumSize(QtCore.QSize(235, 428))
-        ControlWindow.setMaximumSize(QtCore.QSize(16777215, 428))
+        ControlWindow.setMinimumSize(QtCore.QSize(235, 486))
+        ControlWindow.setMaximumSize(QtCore.QSize(16777215, 486))
         ControlWindow.setFocusPolicy(QtCore.Qt.ClickFocus)
         self.centralwidget = QtGui.QWidget(ControlWindow)
         self.centralwidget.setAutoFillBackground(False)
@@ -54,6 +54,19 @@ class Ui_ControlWindow(object):
         self.grouped_checkBox.setObjectName(_fromUtf8("grouped_checkBox"))
         self.horizontalLayout_2.addWidget(self.grouped_checkBox)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
+        self.verticalLayout_21 = QtGui.QVBoxLayout()
+        self.verticalLayout_21.setObjectName(_fromUtf8("verticalLayout_21"))
+        self.aspectRatio_label = QtGui.QLabel(self.centralwidget)
+        self.aspectRatio_label.setObjectName(_fromUtf8("aspectRatio_label"))
+        self.verticalLayout_21.addWidget(self.aspectRatio_label)
+        self.aspectRatio_doubleSpinBox = QtGui.QDoubleSpinBox(self.centralwidget)
+        self.aspectRatio_doubleSpinBox.setDecimals(2)
+        self.aspectRatio_doubleSpinBox.setMinimum(1.0)
+        self.aspectRatio_doubleSpinBox.setMaximum(1000.0)
+        self.aspectRatio_doubleSpinBox.setSingleStep(0.1)
+        self.aspectRatio_doubleSpinBox.setObjectName(_fromUtf8("aspectRatio_doubleSpinBox"))
+        self.verticalLayout_21.addWidget(self.aspectRatio_doubleSpinBox)
+        self.verticalLayout.addLayout(self.verticalLayout_21)
         self.verticalLayout_19 = QtGui.QVBoxLayout()
         self.verticalLayout_19.setObjectName(_fromUtf8("verticalLayout_19"))
         self.thickness_label = QtGui.QLabel(self.centralwidget)
@@ -173,6 +186,7 @@ class Ui_ControlWindow(object):
         self.menuColor.addAction(self.action_invert)
         self.menubar.addAction(self.menuFile.menuAction())
         self.menubar.addAction(self.menuColor.menuAction())
+        self.aspectRatio_label.setBuddy(self.aspectRatio_doubleSpinBox)
         self.thickness_label.setBuddy(self.thickness_spinBox)
         self.scale_label.setBuddy(self.scale_doubleSpinBox)
         self.rotation_label.setBuddy(self.rotation_doubleSpinBox)
@@ -186,7 +200,8 @@ class Ui_ControlWindow(object):
         QtCore.QMetaObject.connectSlotsByName(ControlWindow)
         ControlWindow.setTabOrder(self.shapes_comboBox, self.filled_checkBox)
         ControlWindow.setTabOrder(self.filled_checkBox, self.grouped_checkBox)
-        ControlWindow.setTabOrder(self.grouped_checkBox, self.thickness_spinBox)
+        ControlWindow.setTabOrder(self.grouped_checkBox, self.aspectRatio_doubleSpinBox)
+        ControlWindow.setTabOrder(self.aspectRatio_doubleSpinBox, self.thickness_spinBox)
         ControlWindow.setTabOrder(self.thickness_spinBox, self.scale_doubleSpinBox)
         ControlWindow.setTabOrder(self.scale_doubleSpinBox, self.rotation_doubleSpinBox)
         ControlWindow.setTabOrder(self.rotation_doubleSpinBox, self.nrows_spinBox)
@@ -198,6 +213,7 @@ class Ui_ControlWindow(object):
         ControlWindow.setWindowTitle(_translate("ControlWindow", "Control window", None))
         self.filled_checkBox.setText(_translate("ControlWindow", "&Filled", None))
         self.grouped_checkBox.setText(_translate("ControlWindow", "&Grouped", None))
+        self.aspectRatio_label.setText(_translate("ControlWindow", "&Aspect ratio", None))
         self.thickness_label.setText(_translate("ControlWindow", "&Thickness", None))
         self.scale_label.setText(_translate("ControlWindow", "&Scale", None))
         self.rotation_label.setText(_translate("ControlWindow", "&Rotation (deg)", None))
