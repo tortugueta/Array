@@ -68,30 +68,24 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_21">
+     <layout class="QVBoxLayout" name="verticalLayout_20">
       <item>
-       <widget class="QLabel" name="aspectRatio_label">
+       <widget class="QLabel" name="size_label">
         <property name="text">
-         <string>&amp;Aspect ratio</string>
+         <string>&amp;Size (pixels)</string>
         </property>
         <property name="buddy">
-         <cstring>aspectRatio_doubleSpinBox</cstring>
+         <cstring>size_spinBox</cstring>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="aspectRatio_doubleSpinBox">
-        <property name="decimals">
-         <number>2</number>
-        </property>
+       <widget class="QSpinBox" name="size_spinBox">
         <property name="minimum">
-         <double>1.000000000000000</double>
+         <number>1</number>
         </property>
         <property name="maximum">
-         <double>1000.000000000000000</double>
-        </property>
-        <property name="singleStep">
-         <double>0.100000000000000</double>
+         <number>5000</number>
         </property>
        </widget>
       </item>
@@ -122,30 +116,30 @@
      </layout>
     </item>
     <item>
-     <layout class="QVBoxLayout" name="verticalLayout_20">
+     <layout class="QVBoxLayout" name="verticalLayout_21">
       <item>
-       <widget class="QLabel" name="scale_label">
+       <widget class="QLabel" name="aspectRatio_label">
         <property name="text">
-         <string>&amp;Scale</string>
+         <string>&amp;Aspect ratio</string>
         </property>
         <property name="buddy">
-         <cstring>scale_doubleSpinBox</cstring>
+         <cstring>aspectRatio_doubleSpinBox</cstring>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QDoubleSpinBox" name="scale_doubleSpinBox">
+       <widget class="QDoubleSpinBox" name="aspectRatio_doubleSpinBox">
         <property name="decimals">
          <number>2</number>
         </property>
+        <property name="minimum">
+         <double>1.000000000000000</double>
+        </property>
         <property name="maximum">
-         <double>100.000000000000000</double>
+         <double>1000.000000000000000</double>
         </property>
         <property name="singleStep">
-         <double>0.010000000000000</double>
-        </property>
-        <property name="value">
-         <double>1.000000000000000</double>
+         <double>0.100000000000000</double>
         </property>
        </widget>
       </item>
@@ -380,9 +374,9 @@
   <tabstop>shapes_comboBox</tabstop>
   <tabstop>filled_checkBox</tabstop>
   <tabstop>grouped_checkBox</tabstop>
-  <tabstop>aspectRatio_doubleSpinBox</tabstop>
+  <tabstop>size_spinBox</tabstop>
   <tabstop>thickness_spinBox</tabstop>
-  <tabstop>scale_doubleSpinBox</tabstop>
+  <tabstop>aspectRatio_doubleSpinBox</tabstop>
   <tabstop>rotation_doubleSpinBox</tabstop>
   <tabstop>nrows_spinBox</tabstop>
   <tabstop>ncolumns_spinBox</tabstop>

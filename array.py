@@ -33,12 +33,11 @@ class MainControlWindow(QMainWindow, ControlWindow.Ui_ControlWindow):
 		self.sceneWindow.show()
 
 		# Connections
-		#self.connect(self.action_reset, SIGNAL("activated()"), self.sceneWindow.createScene)
 		self.connect(self.action_invert, SIGNAL("toggled(bool)"), self.sceneWindow.setColours)
 		self.connect(self.shapes_comboBox, SIGNAL("currentIndexChanged(int)"), self.sceneWindow.createScene)
-		self.connect(self.aspectRatio_doubleSpinBox, SIGNAL("valueChanged(double)"), self.sceneWindow.setAspectRatio)
+		self.connect(self.aspectRatio_doubleSpinBox, SIGNAL("valueChanged(double)"), self.sceneWindow.setSize)
 		self.connect(self.thickness_spinBox, SIGNAL("valueChanged(int)"), self.sceneWindow.setColours)
-		self.connect(self.scale_doubleSpinBox, SIGNAL("valueChanged(double)"), self.sceneWindow.setScale)
+		self.connect(self.size_spinBox, SIGNAL("valueChanged(int)"), self.sceneWindow.setSize)
 		self.connect(self.rotation_doubleSpinBox, SIGNAL("valueChanged(double)"), self.sceneWindow.setRotation)
 		self.connect(self.filled_checkBox, SIGNAL("stateChanged(int)"), self.sceneWindow.setColours)
 		self.connect(self.grouped_checkBox, SIGNAL("stateChanged(int)"), self.sceneWindow.setGrouping)
@@ -71,13 +70,13 @@ class MainSceneWindow(QMainWindow, SceneWindow.Ui_SceneWindow):
 		# Create the scene and set it to be very big so that the QGraphicsView does not pull
 		# off its shite about aligning the scene to fit in the view
 		self.scene = QGraphicsScene(parent=self)
-		self.scene.setSceneRect(-1024/2, -768/2, 1024, 768)
+		self.scene.setSceneRect(-1920/2, -1080/2, 1920, 1080)
 
 		# Read the parameters set in the interface
 		selectedShape = self.parent().shapes_comboBox.currentIndex()
 		nrows = self.parent().nrows_spinBox.value()
 		ncolumns = self.parent().ncolumns_spinBox.value()
-		self.radius = 50 # This is the radius for the circles and half the size for the rectangles
+		size = self.parent().size_spinBox.value() # This is the diameter for the circles and the side length for the rectangles
 		aspectRatio = self.parent().aspectRatio_doubleSpinBox.value()
 
 		# Create the group that will contain the items
@@ -90,9 +89,9 @@ class MainSceneWindow(QMainWindow, SceneWindow.Ui_SceneWindow):
 		for row in xrange(nrows):
 			for column in xrange(ncolumns):
 				if selectedShape == 0:		# Circles selected
-					item = QGraphicsEllipseItem(-self.radius*aspectRatio, -self.radius, 2*self.radius*aspectRatio,  2*self.radius)
+					item = QGraphicsEllipseItem(-size/2.0*aspectRatio, -size/2.0, size*aspectRatio, size)
 				elif selectedShape == 1:	# Rectangles selected
-					item = QGraphicsRectItem(-self.radius*aspectRatio,  -self.radius,  2*self.radius*aspectRatio, 2*self.radius)
+					item = QGraphicsRectItem(-size/2.0*aspectRatio,  -size/2.0,  size*aspectRatio, size)
 				
 				item.setFlags(QGraphicsItem.GraphicsItemFlags(1)) # Make item movable
 				self.itemList.append(item)
@@ -108,8 +107,7 @@ class MainSceneWindow(QMainWindow, SceneWindow.Ui_SceneWindow):
 		# "thickness" and "filled" properties
 		self.setColours()
 		
-		# Set the scale and rotation
-		self.setScale()
+		# Set the rotation
 		self.setRotation()
 		
 		# Display the scene
@@ -157,19 +155,15 @@ class MainSceneWindow(QMainWindow, SceneWindow.Ui_SceneWindow):
 			else:
 				item.setBrush(backgroundBrush)
 
-	def setScale(self):
+	def setSize(self):
 		"""
-		Set the scale of the goup or individual items
+		Set the size of the items
 		"""
 		
-		scale = self.parent().scale_doubleSpinBox.value()
-		grouped = self.parent().grouped_checkBox.isChecked()
-
-		if grouped:
-			self.group.setScale(scale)
-		else:
-			for item in self.itemList:
-				item.setScale(scale)
+		aspectRatio = self.parent().aspectRatio_doubleSpinBox.value()		
+		size = self.parent().size_spinBox.value()
+		for item in self.itemList:
+			item.setRect(-size/2.0*aspectRatio, -size/2.0, size*aspectRatio,  size)
 	
 	def setRotation(self):
 		"""
@@ -194,9 +188,10 @@ class MainSceneWindow(QMainWindow, SceneWindow.Ui_SceneWindow):
 		column_pitch = self.parent().columnPitch_doubleSpinBox.value()
 		nrows = self.parent().nrows_spinBox.value()
 		ncolumns = self.parent().ncolumns_spinBox.value()
-
-		row_period = 2 * self.radius + row_pitch
-		column_period = 2 * self.radius + column_pitch
+		size = self.parent().size_spinBox.value()
+		
+		row_period = size + row_pitch
+		column_period = size + column_pitch
 		xoffset = ((ncolumns-1) * column_period) / 2.0
 		yoffset = ((nrows-1) * row_period) / 2.0
 		
@@ -204,16 +199,7 @@ class MainSceneWindow(QMainWindow, SceneWindow.Ui_SceneWindow):
 			for column in xrange(ncolumns):
 				self.itemList[row*ncolumns + column].setPos(-xoffset + column * column_period, -yoffset + row * row_period)
 
-	def setAspectRatio(self):
-		"""
-		Set the aspect ratio of the features
-		"""
-		
-		aspectRatio = self.parent().aspectRatio_doubleSpinBox.value()
-		for item in self.itemList:
-			item.setRect(-self.radius*aspectRatio, -self.radius, 2*self.radius*aspectRatio,  2*self.radius)
 
-		
 def main():
 	app = QApplication(sys.argv)
 	#app.setStyle("plastique")
